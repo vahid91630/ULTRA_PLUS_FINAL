@@ -1,0 +1,201 @@
+modules = ["python-3.11", "postgresql-16", "python3"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["cacert", "cairo", "cargo", "ffmpeg-full", "freetype", "ghostscript", "glibcLocales", "gobject-introspection", "gtk3", "libiconv", "libxcrypt", "ocl-icd", "opencl-headers", "openssl", "pkg-config", "qhull", "rustc", "tcl", "tk"]
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["sh", "-c", "python cloud_run_optimized.py"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "ULTRA Plus Bot Fixed"
+author = 44723899
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python ULTRA_PLUS_BOT.py"
+
+[[workflows.workflow]]
+name = "ULTRA Plus Bot Deploy"
+author = 44723899
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python bot_runner_simple.py"
+
+[[workflows.workflow]]
+name = "Complete Bot System"
+author = 44723899
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python comprehensive_bot_runner.py"
+
+[[workflows.workflow]]
+name = "Cloud Run Bot"
+author = 44723899
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python cloud_run_optimized.py"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "AUTONOMOUS_TRADING_SYSTEM"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "TRADING_LEARNING_SYSTEM"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "INDEPENDENT_SYSTEM"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "IDEA_LAUNCHER"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "SMART_PORTFOLIO_SERVICE"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "AUTONOMOUS_AI_TRADER"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "STREAMLIT_DASHBOARD_STABLE"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "TELEGRAM_BOT_CLEAN"
+
+[[workflows.workflow]]
+name = "AUTONOMOUS_TRADING_SYSTEM"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python enhanced_autonomous_trading_system.py"
+
+[[workflows.workflow]]
+name = "TRADING_LEARNING_SYSTEM"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python trading_learning_launcher.py"
+
+[[workflows.workflow]]
+name = "INDEPENDENT_SYSTEM"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 persistent_bot_manager.py"
+
+[[workflows.workflow]]
+name = "IDEA_LAUNCHER"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "streamlit run streamlit_idea_launcher.py --server.port 5001"
+
+[[workflows.workflow]]
+name = "SMART_PORTFOLIO_SERVICE"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 automated_portfolio_service.py"
+
+[[workflows.workflow]]
+name = "AUTONOMOUS_AI_TRADER"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 start_autonomous_trader.py"
+
+[[workflows.workflow]]
+name = "STREAMLIT_DASHBOARD_STABLE"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "streamlit run app.py --server.port 5000 --server.address 0.0.0.0 --server.headless true"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "TELEGRAM_BOT_CLEAN"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 telegram_bot_simple_test.py"
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 5001
+externalPort = 5000
+
+[[ports]]
+localPort = 6000
+externalPort = 6000
+
+[[ports]]
+localPort = 7777
+externalPort = 3003
+
+[[ports]]
+localPort = 8000
+externalPort = 8000
+
+[[ports]]
+localPort = 8080
+externalPort = 8080
+
+[[ports]]
+localPort = 8090
+externalPort = 5173
+
+[[ports]]
+localPort = 8501
+externalPort = 3001
+
+[[ports]]
+localPort = 8888
+externalPort = 3002
+
+[[ports]]
+localPort = 9000
+externalPort = 9000
+
+[[ports]]
+localPort = 9999
+externalPort = 4200
+
+[agent]
+integrations = ["python_openai==1.0.0"]

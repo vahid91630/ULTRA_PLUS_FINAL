@@ -1,0 +1,123 @@
+# Deployment optimization - exclude unnecessary files
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.pytest_cache
+.mypy_cache
+
+# Documentation
+*.md
+*.txt
+*.rst
+docs/
+README*
+CHANGELOG*
+LICENSE*
+
+# Development files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Test files
+test_*.py
+*_test.py
+tests/
+test/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Log files
+*.log
+logs/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Backup files
+*.backup
+*.bak
+backups/
+
+# Large files
+*.zip
+*.tar.gz
+*.rar
+
+# Attached assets
+attached_assets/
+
+# Replit specific
+.replit
+replit.nix
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Various config files
+.flake8
+.pre-commit-config.yaml
+.yamllint.yml
+.editorconfig
+.eslintrc*
+.prettierrc*
+.gitpod.yml
+.github/
+
+# Node modules (if any)
+node_modules/
+
+# Cache directories
+.cache/
+.ruff_cache/
+.streamlit/
+
+# Security files
+secure_data/
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+
+# Temporary files
+tmp/
+temp/
+.tmp/

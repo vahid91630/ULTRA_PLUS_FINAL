@@ -1,0 +1,17 @@
+
+# تعمیر پیشنهادی برای app.py
+import streamlit as st
+import sys
+import traceback
+
+try:
+    # کد اصلی dashboard
+    st.title("ULTRA_PLUS_BOT Dashboard")
+    # ... بقیه کد
+except ImportError as e:
+    st.error(f"خطای import: {e}")
+    st.info("در حال بازسازی modules...")
+except Exception as e:
+    st.error(f"خطای عمومی: {e}")
+    st.code(traceback.format_exc())
+            

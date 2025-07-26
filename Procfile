@@ -1,0 +1,1 @@
+web: gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 0 restored_original_bot:app
