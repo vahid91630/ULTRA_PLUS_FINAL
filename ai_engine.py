@@ -8,7 +8,6 @@ import asyncio
 import logging
 import os
 import json
-import traceback
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Tuple
 import aiohttp
@@ -147,15 +146,8 @@ class AITradingEngine:
 
             return enhanced_analysis
 
-        except ConnectionError as e:
-            logger.error(f"❌ Network error in AI market analysis: {e}")
-            return self._get_fallback_analysis()
-        except ValueError as e:
-            logger.error(f"❌ Invalid data in AI market analysis: {e}")
-            return self._get_fallback_analysis()
         except Exception as e:
-            logger.error(f"❌ Unexpected AI market analysis error: {e}")
-            logger.debug(f"Full traceback: {traceback.format_exc()}")
+            logger.error(f"❌ AI market analysis failed: {e}")
             return self._get_fallback_analysis()
 
     def _get_system_prompt(self) -> str:
@@ -251,15 +243,8 @@ class AITradingEngine:
 
             return context
 
-        except ConnectionError as e:
-            logger.error(f"❌ Network error preparing market context: {e}")
-            return {}
-        except KeyError as e:
-            logger.error(f"❌ Missing data key in market context: {e}")
-            return {}
         except Exception as e:
-            logger.error(f"❌ Unexpected error preparing market context: {e}")
-            logger.debug(f"Full traceback: {traceback.format_exc()}")
+            logger.error(f"❌ Failed to prepare market context: {e}")
             return {}
 
     async def _enhance_with_technical_analysis(self, ai_analysis: Dict, market_data: Dict) -> Dict:
@@ -300,15 +285,8 @@ class AITradingEngine:
 
             return enhanced
 
-        except ValueError as e:
-            logger.error(f"❌ Invalid technical data: {e}")
-            return ai_analysis
-        except KeyError as e:
-            logger.error(f"❌ Missing technical indicator: {e}")
-            return ai_analysis
         except Exception as e:
             logger.error(f"❌ Technical analysis enhancement failed: {e}")
-            logger.debug(f"Full traceback: {traceback.format_exc()}")
             return ai_analysis
 
     def _calculate_technical_score(self, market_data: Dict) -> float:
